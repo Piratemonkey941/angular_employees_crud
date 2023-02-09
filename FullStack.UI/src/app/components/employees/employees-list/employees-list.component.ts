@@ -1,61 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
+import { EmployeesService } from 'src/app/services/employees.service';
 
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.css']
 })
-export class EmployeesListComponent implements OnInit {
+export class EmployeesListComponent implements OnInit {       // Class that implements the OnInit interface
 
-  employees: Employee[] = [
-    {
-      id: "7669007839071715",
-      name: "John Doe",
-      email: "johndoe@example.com",
-      phone: 1234567890,
-      salary: 50000,
-      department: "Marketing"
-    },
-    {
-      id: "8058703828981619",
-      name: "Jane Doe",
-      email: "janedoe@example.com",
-      phone: 1234567891,
-      salary: 55000,
-      department: "Human Resources"
-    },
-    {
-      id: "8632446570791218",
-      name: "Bob Smith",
-      email: "bobsmith@example.com",
-      phone: 1234567892,
-      salary: 60000,
-      department: "IT"
-    },
-    {
-      id: "1874193518401712",
-      name: "Alice Johnson",
-      email: "alicejohnson@example.com",
-      phone: 1234567893,
-      salary: 65000,
-      department: "Sales"
-    },
-    {
-      id:"3906128897916211",
-      name: "Charlie Brown",
-      email: "charliebrown@example.com",
-      phone: 1234567894,
-      salary: 70000,
-      department: "Finance"
-    }
-  ];
+  employees: Employee[] = [];                                 // Property that stores the list of employees
 
-  constructor() { }
+  constructor(private employeesService: EmployeesService) { } // Constructor that injects/adds the EmployeesService dependency
 
-  ngOnInit(): void {
+  ngOnInit(): void {                                          // Method that is called when the component is initialized
 
-    this.employees.push()
+    this.employeesService.getAllEmployees().subscribe({       // Calling the getAllEmployees method of the EmployeesService
+      next: (employees) => {                                  // Callback that is executed when the HTTP request succeeds
+        this.employees = employees                            // Updating the employees property with the response data
+      },
+      error: (response) => {                                  // Callback that is executed when the HTTP request fails
+        console.log(response);                                // Logging the error response
+      }
+    })
   }
 
 }
