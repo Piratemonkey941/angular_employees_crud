@@ -1,0 +1,11 @@
+Connecting string
+Server=localhost\MSSQLSERVER01;Database=master;Trusted_Connection=True;
+
+Sql server install log
+C:\Program Files\Microsoft SQL Server\160\Setup Bootstrap\Log\20230208_161953
+
+Instal Media Folder
+C:\SQL2022\Developer_ENU
+
+Install Resources Fo
+C:\Program Files\Microsoft SQL Server\160\SSEI\Resources
